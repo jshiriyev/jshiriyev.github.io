@@ -7,20 +7,20 @@
     <meta charset="utf-8" />
 
     <meta name="viewport" content = "width=device-width, initial-scale=1.0">
-    <meta name="keywords" content = "python, simulation, modeling, scientific computing, fluid meachanics, geomechanics, electromagnetics, resistivity modeling, geomodeling, energy resources, formation evaluation, upstream, oil management, engineering application, datum, scicomp, porepy">
-    <meta name="description" content = "Personal Portfolio">
+    <meta name="keywords" content = "reservoir engineering, reservoir simulation, field development, petrophysics, formation evaluation, python tools, scientific computing, teaching materials">
+    <meta name="description" content = "Reservoir engineering portfolio, Python tools, project examples, and teaching materials.">
 
-    <title>Shiriyev's Portfolio</title>
+    <title>Home | Shiriyev Portfolio</title>
 
-    <link rel="stylesheet" href="styles\main.css">
-    <link rel="stylesheet" href="styles\hybrid.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/hybrid.css">
 
   </head>
 
   <body>
 
-    <script src="scripts\header.js"></script>
-    <script src="scripts\footer.js"></script>
+    <script src="./scripts/header.js"></script>
+    <script src="./scripts/footer.js"></script>
 
     <div id="page-container">
 
@@ -28,18 +28,20 @@
 
       <nav class="ribbon">
         <div class="title">
-  <a href=".">PyDemo</a>
+  <a href=".">Home</a>
 </div>
 <div class="links">
   <ul>
     
-    <li><a href="lectures" class="passive">Lectures</a></li>
+    <li><a href="reservoir_engineering" class="passive">Reservoir Engineering</a></li>
     
     <li><a href="modeling" class="passive">Modeling</a></li>
     
-    <li><a href="research" class="passive">Research</a></li>
+    <li><a href="pydemo" class="passive">PyDemo</a></li>
     
-    <li><a href="about" class="passive">About</a></li>
+    <li><a href="teaching_materials" class="passive">Teaching Materials</a></li>
+    
+    <li><a href="research" class="passive">Research</a></li>
     
   </ul>
 </div>
@@ -53,9 +55,9 @@
       <main>
 
         
-        <nav class="sidebar pydemo">
+        <nav class="sidebar library">
         
-          <button class="toggle">PyDemo</button>
+          <button class="toggle">Home</button>
 
 <div class="links">
 
@@ -66,63 +68,91 @@
         </nav>
         
         
-        <div class="hybrid">
-          <button class="button type1" onclick=changeMainView(0)>
-  <div class="title">
-    <h3>datum</h3>
-    <svg><use xlink:href="#python-logo" href="#python-logo"></use></svg>
-  </div>
-  <div class="text">
-    <p>datum provides python scripts for generating data frame that can execute all kinds of excel-like functions such as sorting, filtering, etc. It also has visualization script that enable automated graphical representation. Future version will provide grid generation for numerical calculations.</p>
-  </div>
-</button>
 
-<button class="button type1" onclick=changeMainView(1)>
-  <div class="title">
-    <h3>scicomp</h3>
-    <svg><use xlink:href="#python-logo" href="#python-logo"></use></svg>
-  </div>
-  <div class="text">
-    <p>scicomp provides python scripts for statistical and numerical calculations. Popular forward and backward algorithms are included in four modules which are stats, optimize, special and numerics.</p>
-  </div>
-</button>
+        <div class="canvas">
+          <div id="home" class="item page">
+  <div class="column-one">
+    <h1>Javid Shiriyev, Ph.D.</h1>
 
-<button class="button type1" onclick=changeMainView(2)>
-  <div class="title">
-    <h3>porepy</h3>
-    <svg><use xlink:href="#python-logo" href="#python-logo"></use></svg>
-  </div>
-  <div class="text">
-    <p>porepy contains a set of modules to model porous medium and wellbore. The modeling capabilites include flow analysis, geomechanical calculations, wellbore resisitivity computation and geostatistical estimations. </p>
-  </div>
-</button>
+<p>I share reservoir engineering insights, Python-based tools, project examples, and teaching materials that help connect technical concepts with real field applications.</p>
 
-<div class="icon">
-  <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
-    <symbol id="python-logo" version="1.1" x="0px" y="0px" viewBox="0.21 -0.077 110 110" enable-background="new 0.21 -0.077 110 110">
-      <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="63.8159" y1="56.6829" x2="118.4934" y2="1.8225" gradientTransform="matrix(1 0 0 -1 -53.2974 66.4321)">
-        <stop offset="0" style="stop-color:#387EB8"/>
-        <stop offset="1" style="stop-color:#366994"/>
-      </linearGradient>
-      <path fill="url(#SVGID_1_)" d="M55.023-0.077c-25.971,0-26.25,10.081-26.25,12.156c0,3.148,0,12.594,0,12.594h26.75v3.781 c0,0-27.852,0-37.375,0c-7.949,0-17.938,4.833-17.938,26.25c0,19.673,7.792,27.281,15.656,27.281c2.335,0,9.344,0,9.344,0 s0-9.765,0-13.125c0-5.491,2.721-15.656,15.406-15.656c15.91,0,19.971,0,26.531,0c3.902,0,14.906-1.696,14.906-14.406 c0-13.452,0-17.89,0-24.219C82.054,11.426,81.515-0.077,55.023-0.077z M40.273,8.392c2.662,0,4.813,2.15,4.813,4.813 c0,2.661-2.151,4.813-4.813,4.813s-4.813-2.151-4.813-4.813C35.46,10.542,37.611,8.392,40.273,8.392z"/>
-      <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="97.0444" y1="21.6321" x2="155.6665" y2="-34.5308" gradientTransform="matrix(1 0 0 -1 -53.2974 66.4321)">
-        <stop offset="0" style="stop-color:#FFE052"/>
-        <stop offset="1" style="stop-color:#FFC331"/>
-      </linearGradient>
-      <path fill="url(#SVGID_2_)" d="M55.397,109.923c25.959,0,26.282-10.271,26.282-12.156c0-3.148,0-12.594,0-12.594H54.897v-3.781 c0,0,28.032,0,37.375,0c8.009,0,17.938-4.954,17.938-26.25c0-23.322-10.538-27.281-15.656-27.281c-2.336,0-9.344,0-9.344,0 s0,10.216,0,13.125c0,5.491-2.631,15.656-15.406,15.656c-15.91,0-19.476,0-26.532,0c-3.892,0-14.906,1.896-14.906,14.406 c0,14.475,0,18.265,0,24.219C28.366,100.497,31.562,109.923,55.397,109.923z M70.148,101.454c-2.662,0-4.813-2.151-4.813-4.813 s2.15-4.813,4.813-4.813c2.661,0,4.813,2.151,4.813,4.813S72.809,101.454,70.148,101.454z"/>
-    </symbol>
-  </svg>
+<h2>Technical Focus</h2>
+
+<ul>
+<li>Reservoir simulation and field development planning</li>
+<li>Formation evaluation and petrophysics</li>
+<li>Reservoir fluids, rock mechanics, and production analysis</li>
+<li>Scientific computing and Python-based engineering workflows</li>
+</ul>
+
+<h2>Professional Background</h2>
+
+<p>My research revolves around studying fluid flow modeling through porous media, including the problems associated with uncertainty handling in data collection and model incorporation. I acquire the rudiments of mechanics and the basics of data science and have taught fluid and rock mechanics, reservoir characterization and petrophysics-related courses. Besides teaching, currently, I am also involved in the field development planning for Gum-Daniz and Bahar fields.</p>
+
+<h2>Education</h2>
+
+<ul>
+<li>Ph.D., Petroleum and Geosystems Engineering, The University of Texas at Austin, 2018</li>
+<li>M.Sc., Petroleum and Natural Gas Engineering, Middle East Technical University, 2014</li>
+<li>B.Sc., Petroleum and Natural Gas Engineering, Middle East Technical University, 2012</li>
+</ul>
+
+<h2>Experience</h2>
+
+<ul>
+<li>Reservoir Simulation Engineer, Bahar Energy Operated Company, Jun. 2021 to present</li>
+<li>Senior Lecturer, Baku Higher Oil School, Nov. 2020 to present</li>
+<li>Visiting Assistant Professor, Middle East Technical University NCC, 2020</li>
+<li>Postdoctoral Research Fellow, The University of Texas at Austin, 2019-2020</li>
+<li>Reservoir Engineering Intern, Aramco Services Company, 2017</li>
+<li>Petroleum Engineering Intern, BP, 2013</li>
+<li>Drilling Engineering Intern, BP, 2011</li>
+<li>Student Intern, TPAO, 2010</li>
+</ul>
+
+<h2>Research Interests</h2>
+
+<ul>
+<li>Perforation and wellbore stability in unconsolidated sands</li>
+<li>Sand control completions</li>
+<li>Frac-packing poorly consolidated sands </li>
+<li>Hydraulic fracture propagation in soft formations</li>
+<li>Fluid flow in fractured rock</li>
+</ul>
+
+<h2>Courses Taught</h2>
+
+<ul>
+<li>Fluid Flow Through Porous Media</li>
+<li>Applied Geostatistics for Reservoir Characterization</li>
+<li>Formation Evaluation with Well Logging</li>
+<li>Fundamentals of Petrophysics</li>
+<li>Reservoir Fluid Properties</li>
+<li>Reservoir Rock Mechanics</li>
+<li>Scientific Computing with Python</li>
+<li>Energy Resources</li>
+</ul>
+
+<h2>Honors</h2>
+
+<ul>
+<li>SPWLA Annual Symposium Paper Contest Winner, 2017</li>
+<li>Conoco-Phillips Scholarship recipient, 2014-15</li>
+<li>METU Graduate Course Performance Award, 2013</li>
+<li>BP Graduate Scholarship recipient, 2012-14</li>
+<li>Chamber of Petroleum Engineers Award, Turkey, 2012</li>
+<li>METU Undergraduate First Ranking Student Award, 2012</li>
+<li>BP Undergraduate Scholarship recipient, 2008-12</li>
+</ul>
+
+<h2>Publications</h2>
+
+<p>See my <a href="https://scholar.google.com/citations?user=YvggY5wAAAAJ&hl=en">Google Scholar profile</a> for the current publication list.</p>
+
+  </div>
 </div>
-        </div>
-        
 
-    <div class="canvas">
-      <div id="pydemo" class="item page">
-        <div class="column-one">
-          <p>This section will include the structure and brief summary of PyDemo!</p>
         </div>
-      </div>
-    </div>
 
       </main>
 
@@ -130,11 +160,11 @@
       
     </div>
 
-    <script src="scripts\main.js"></script>
-    <script src="scripts\ribbon.js"></script>
-    <script src="scripts\sidebar.js"></script>
-    <script src="scripts\hybrid.js"></script>
-    <script src="scripts\canvas.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/ribbon.js"></script>
+    <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/hybrid.js"></script>
+    <script src="./scripts/canvas.js"></script>
 
   </body>
 

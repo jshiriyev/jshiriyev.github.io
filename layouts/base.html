@@ -7,20 +7,20 @@
     <meta charset="utf-8" />
 
     <meta name="viewport" content = "width=device-width, initial-scale=1.0">
-    <meta name="keywords" content = "python, simulation, modeling, scientific computing, fluid meachanics, geomechanics, electromagnetics, resistivity modeling, geomodeling, energy resources, formation evaluation, upstream, oil management, engineering application, datum, scicomp, porepy">
-    <meta name="description" content = "Personal Portfolio">
+    <meta name="keywords" content = "reservoir engineering, reservoir simulation, field development, petrophysics, formation evaluation, python tools, scientific computing, teaching materials">
+    <meta name="description" content = "{{ page.get('description', 'Reservoir engineering portfolio, Python tools, project examples, and teaching materials.') }}">
 
-    <title>Shiriyev's Portfolio</title>
+    <title>{{ page['title'] }} | Shiriyev Portfolio</title>
 
-    <link rel="stylesheet" href="..\styles\main.css">
-    <link rel="stylesheet" href="..\styles\hybrid.css">
+    <link rel="stylesheet" href="{{ page['asset_prefix'] }}/styles/main.css">
+    <link rel="stylesheet" href="{{ page['asset_prefix'] }}/styles/hybrid.css">
 
   </head>
 
   <body>
 
-    <script src="..\scripts\header.js"></script>
-    <script src="..\scripts\footer.js"></script>
+    <script src="{{ page['asset_prefix'] }}/scripts/header.js"></script>
+    <script src="{{ page['asset_prefix'] }}/scripts/footer.js"></script>
 
     <div id="page-container">
 
@@ -56,11 +56,11 @@
       
     </div>
 
-    <script src="..\scripts\main.js"></script>
-    <script src="..\scripts\ribbon.js"></script>
-    <script src="..\scripts\sidebar.js"></script>
-    <script src="..\scripts\hybrid.js"></script>
-    <script src="..\scripts\canvas.js"></script>
+    <script src="{{ page['asset_prefix'] }}/scripts/main.js"></script>
+    <script src="{{ page['asset_prefix'] }}/scripts/ribbon.js"></script>
+    <script src="{{ page['asset_prefix'] }}/scripts/sidebar.js"></script>
+    <script src="{{ page['asset_prefix'] }}/scripts/hybrid.js"></script>
+    <script src="{{ page['asset_prefix'] }}/scripts/canvas.js"></script>
 
   </body>
 

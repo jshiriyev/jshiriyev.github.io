@@ -1,9 +1,5 @@
-import yaml
+from build import build_site
 
-Loader = yaml.loader.SafeLoader
 
-with open('sitemap.yml','r') as ymlfile:
-	smap = yaml.load(ymlfile,Loader=Loader)
-	
-for path in smap["page-dirs"]:
-	__import__(f"{path}.setup")
+if __name__ == "__main__":
+    build_site()

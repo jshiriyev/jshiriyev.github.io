@@ -7,7 +7,7 @@
   <button class="accordion" onclick="changeCanvasItemFromSidebar({{ maincounter.value }})">{{ major['title'] }}</button>
   {% set maincounter.value = maincounter.value + 1 %}
   <div class="panel">
-  {% for item in major.items %}
+  {% for item in major['items'] %}
     <div class="item">
       <a href="#" onclick="changeCanvasItemFromSidebar({{ maincounter.value }})">{{ item['title'] }}</a>
     </div>

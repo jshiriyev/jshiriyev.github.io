@@ -1,6 +1,41 @@
 # jshiriyev.github.io
 
-Roadmap
+Personal technical portfolio hosted with GitHub Pages.
+
+The site is generated from Markdown/frontmatter source files with a small Python/Jinja build system. The generated HTML is committed so GitHub Pages can serve it as a static site.
+
+## Structure
+
+- `home/` - homepage source content.
+- `reservoir_engineering/` - reservoir engineering portfolio topics.
+- `modeling/` - modeling and computational engineering notes.
+- `pydemo/` - Python demo content and scripts.
+- `teaching_materials/` - Google Drive-oriented teaching material landing page.
+- `research/` - research themes and links.
+- `layouts/` - Jinja templates.
+- `styles/` - CSS files.
+- `scripts/` - client-side JavaScript.
+- `sitemap.yml` - page order and content collections used by the builder.
+- `build.py` - central site generator.
+- `SITEMAP_WORKSHEET.md` - planning worksheet for the next content pass.
+
+## Build
+
+Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Generate the site:
+
+```bash
+python main.py
+```
+
+The homepage is written to `index.html`. Subpages are written to each section's `index.html`.
+
+## Content Roadmap
 
 - Prepare log depthview, and make it to main index.html
 - Add log summary charts to PyDemo

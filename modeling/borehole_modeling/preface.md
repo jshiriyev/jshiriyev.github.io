@@ -1,4 +1,0 @@
----
-title: 'Borehole Modeling'
-
----

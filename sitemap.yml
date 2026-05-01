@@ -1,20 +1,19 @@
 page-dirs:
-  - pydemo
-  - lectures
-  - modeling
-  - research
-  - about
-
-lectures-dirs:
-  - energy_systems
-  - formation_evaluation
+  - home
   - reservoir_engineering
-  - engineering_economy
-  - engineering_ethics
-  - python_programming
-  - scientific_computing
-  - mechanics
-  - data_science
+  - modeling
+  - pydemo
+  - teaching_materials
+  - research
+
+reservoir_engineering-markdowns:
+  - reservoir_fluids.md
+  - reserve_estimation.md
+  - material_balance.md
+  - decline_curve_analysis.md
+  - gas_reservoirs.md
+  - reservoir_simulation.md
+  - reservoir_management.md
 
 modeling-dirs:
   - petrophysics
@@ -24,69 +23,6 @@ modeling-dirs:
   - reservoir_simulation
   - production_analysis
   - borehole_modeling
-
-research-dirs:
-  - ai_implementation
-  - wellbore_monitoring
-  - sand_control
-  - eor
-  - ccus
-  - geothermal
-
-energy_systems-markdowns:
-  - energy_sources.md
-  - supply_chain_analysis.md
-  - legislation.md
-  - cruide_transport.md
-  - gas_storage.md
-  - methane_mitigation.md
-  - hydrogen.md
-
-formation_evaluation-markdowns:
-  - petrophysics.md
-  - core_analysis.md
-  - well_logging.md
-  - well_testing.md
-  - geomodeling.md
-
-reservoir_engineering-markdowns:
-  - reservoir_fluids.md 
-  - reserve_estimation.md 
-  - material_balance.md
-  - decline_curve_analysis.md
-  - gas_reservoirs.md
-  - reservoir_simulation.md
-  - reservoir_management.md
-
-engineering_economy-markdowns:
-  - energy_economics.md
-  - property_valuation.md
-
-engineering_ethics-markdowns:
-  - codes.md
-
-python_programming-markdowns:
-  - essentials.md
-  - object_oriented.md
-  - packaging.md
-  - performance_optimization.md
-  - high_performance_computing.md
-
-scientific_computing-markdowns:
-  - optimization.md
-  - numerical_analysis.md
-
-mechanics-markdowns:
-  - material_strength.md
-  - thermodynamics.md
-  - fluid_mechanics.md
-  - quantum_mechanics.md
-
-data_science-markdowns:
-  - data_analysis.md
-  - machine_learning.md
-  - big_data_analytics.md
-  - natural_language_processing.md
 
 petrophysics-markdowns:
   - core_analysis.md
@@ -111,45 +47,3 @@ production_analysis-markdowns:
 borehole_modeling-markdowns:
   - geomechanics.md
   - resistivity_modeling.md
-
-ai_implementation-markdowns:
-  - text_recognition.md
-  - npt_minimization.md
-  - reservoir_surveillance.md
-  - production_optimization.md
-
-wellbore_monitoring-markdowns:
-  - wellbore_flow_profiling.md
-  - corrosion_scaling_detection.md
-  - gas_lift_optimization.md
-  - injection_well_monitoring.md
-  - fiber_optic_sensing.md
-  - hydraulic_fracture_diagnostics.md
-
-sand_control-markdowns:
-  - real_time_monitoring.md
-  - sand_prediction_models.md
-  - chemical_consolidation.md
-  - multi_phase_flow_modeling.md
-
-eor-markdowns:
-  - gas_injection.md
-  - thermal_injection.md
-  - chemical_injection.md
-  - reservoir_characterization.md
-
-ccus-markdowns:
-  - geological_characterization.md
-  - caprock_integrity_analysis.md
-  - well_monitoring.md
-  - storage_in_depleted_reservoirs.md
-  - storage_in_saline_aquifers.md
-  - storage_in_unconventionals.md
-  - reservoir_simulation.md
-
-geothermal-markdowns:
-  - reservoir_characterization.md
-  - enhanced_geothermal_systems.md
-  - abandoned_oil_gas_wells.md
-  - geomechanical_assessment.md
-  - reservoir_monitoring.md

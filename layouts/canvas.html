@@ -6,7 +6,7 @@
 {% for major in page.majors %}
 <div id="{{ major.mdname }}" class="item major">
   <div class="panel">
-    {% for item in major.items %}
+    {% for item in major['items'] %}
       <a href="#" onclick="changeCanvasItemFromCanvas('{{ item.mdname }}')">{{ item['title'] }}</a>
     {% endfor %}
   </div>
@@ -14,7 +14,7 @@
     {{ major['html-preface'] }}
   </div>
 </div>
-  {% for item in major.items %}
+  {% for item in major['items'] %}
   <div id="{{ item.mdname }}" class="item minor">
     {% if 'html-column-1' in item %}
       <div class="column-one">
