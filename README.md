@@ -2,6 +2,10 @@
 
 Personal technical portfolio hosted with GitHub Pages.
 
+- case studies (notebook)
+- papers to code (notebook)
+- lecture materials (google drive)
+
 The site is generated from Markdown/frontmatter source files with a small Python/Jinja build system. The generated HTML is committed so GitHub Pages can serve it as a static site.
 
 ## Structure
