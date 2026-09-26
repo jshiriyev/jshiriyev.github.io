@@ -1,171 +1,849 @@
 <!DOCTYPE html>
-
 <html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#1B6CA8">
+<title>Thoth — Scripts, Structures &amp; Solutions</title>
+<meta name="description" content="A hub for technical knowledge, engineering resources, and Python-powered calculation tools.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231B6CA8'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23e8c96a'%3ET%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    color-scheme: light;
+    --blue: #1B6CA8;
+    --blue-dark: #145289;
+    --gold: #C9A84C;
+    --gold-light: #e8c96a;
+    --bg: #FAF8F4;
+    --surface: #FFFFFF;
+    --text: #1E1E2E;
+    --muted: #6B7280;
+    --border: #E5E0D8;
 
-  <head>
+    --nav-h: 64px;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(30, 30, 46, .04), 0 4px 16px rgba(30, 30, 46, .06);
+    --shadow-hover: 0 2px 4px rgba(30, 30, 46, .05), 0 12px 28px rgba(30, 30, 46, .10);
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --font-glyph: "Segoe UI Historic", "Noto Sans Egyptian Hieroglyphs", "Aegyptus", serif;
+  }
 
-    <meta charset="utf-8" />
+  *, *::before, *::after { box-sizing: border-box; }
 
-    <meta name="viewport" content = "width=device-width, initial-scale=1.0">
-    <meta name="keywords" content = "reservoir engineering, reservoir simulation, field development, petrophysics, formation evaluation, python tools, scientific computing, teaching materials">
-    <meta name="description" content = "Reservoir engineering portfolio, Python tools, project examples, and teaching materials.">
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
 
-    <title>Home | Shiriyev Portfolio</title>
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-    <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/hybrid.css">
+  a { color: var(--blue); }
+  a:hover { color: var(--blue-dark); }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
+  code { font-family: var(--font-mono); font-size: .9em; }
 
-  </head>
+  .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .glyph { font-family: var(--font-glyph); font-style: normal; line-height: 1; }
 
-  <body>
+  /* ── Navigation ─────────────────────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    height: var(--nav-h);
+    background: rgba(255, 255, 255, .92);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+    backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav .container { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 
-    <script src="./scripts/header.js"></script>
-    <script src="./scripts/footer.js"></script>
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); flex-shrink: 0; }
+  .brand:hover { color: var(--text); }
+  .brand-mark {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: grid; place-items: center;
+    background: var(--blue); color: #fff; font-size: 22px;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
+  }
+  .brand-name { font-size: 1.25rem; font-weight: 800; letter-spacing: -.01em; }
+  .brand-name span { color: var(--gold); }
 
-    <div id="page-container">
+  .nav-links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a {
+    display: block; padding: 8px 14px; border-radius: 999px;
+    color: var(--muted); font-size: .95rem; font-weight: 600; text-decoration: none;
+    transition: color .15s, background-color .15s;
+  }
+  .nav-links a:hover { color: var(--blue); background: rgba(27, 108, 168, .06); }
+  .nav-links a.active { color: var(--blue); background: rgba(27, 108, 168, .10); box-shadow: inset 0 -2px 0 var(--gold); }
 
-      <page-header></page-header>
+  /* ── Hero ───────────────────────────────────────────────────── */
+  .hero {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 55%, #0e3d6b 100%);
+    color: #fff;
+    padding: 104px 0 96px;
+  }
+  .hero-glyph {
+    position: absolute; top: -.12em; right: -.08em;
+    font-size: clamp(12rem, 32vw, 26rem);
+    color: #fff; opacity: .08;
+    pointer-events: none; user-select: none;
+  }
+  .hero .container { position: relative; }
+  .hero h1 {
+    margin: 0 0 20px;
+    font-size: clamp(2.4rem, 6.2vw, 4.25rem);
+    line-height: 1.06; font-weight: 800; letter-spacing: -.025em;
+  }
+  .hero h1 .accent { color: var(--gold-light); }
+  .hero p { margin: 0 0 36px; max-width: 580px; font-size: clamp(1.05rem, 2vw, 1.2rem); color: rgba(255, 255, 255, .86); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
-      <nav class="ribbon">
-        <div class="title">
-  <a href=".">Home</a>
-</div>
-<div class="links">
-  <ul>
-    
-    <li><a href="reservoir_engineering" class="passive">Reservoir Engineering</a></li>
-    
-    <li><a href="modeling" class="passive">Modeling</a></li>
-    
-    <li><a href="pydemo" class="passive">PyDemo</a></li>
-    
-    <li><a href="teaching_materials" class="passive">Teaching Materials</a></li>
-    
-    <li><a href="research" class="passive">Research</a></li>
-    
-  </ul>
-</div>
-<a href="#" class="toggle">
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-</a>
-      </nav>
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 24px; border-radius: 10px;
+    font: inherit; font-weight: 700; font-size: 1rem; line-height: 1.2;
+    text-decoration: none; cursor: pointer; border: 2px solid transparent;
+    transition: background-color .15s, border-color .15s, color .15s, transform .15s, box-shadow .15s;
+  }
+  .btn-gold { background: var(--gold); color: var(--text); border-color: var(--gold); }
+  .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); color: var(--text); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .85); }
+  .btn-ghost:hover { background: rgba(255, 255, 255, .12); color: #fff; border-color: #fff; }
 
-      <main>
+  /* ── Sections ───────────────────────────────────────────────── */
+  .section { padding: 80px 0; scroll-margin-top: var(--nav-h); }
+  .section-head { margin-bottom: 36px; }
+  .section-head h2 {
+    display: flex; align-items: center; gap: 12px;
+    margin: 0 0 10px; font-size: clamp(1.7rem, 3.4vw, 2.2rem); line-height: 1.2; letter-spacing: -.015em;
+  }
+  .section-head h2::before { content: ""; width: 6px; height: 1.05em; border-radius: 3px; background: var(--gold); flex-shrink: 0; }
+  .section-head p { margin: 0; max-width: 720px; color: var(--muted); font-size: 1.05rem; }
 
-        
-        <nav class="sidebar library">
-        
-          <button class="toggle">Home</button>
+  hr.divider {
+    border: 0; height: 1px; margin: 0 auto; max-width: 1072px;
+    background: linear-gradient(90deg, transparent, var(--border) 15%, var(--gold) 50%, var(--border) 85%, transparent);
+  }
 
-<div class="links">
+  .card-surface { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
 
+  /* ── Knowledge Base ─────────────────────────────────────────── */
+  .kb { padding: 20px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .tab {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text);
+    font: inherit; font-size: .92rem; font-weight: 600; cursor: pointer;
+    transition: background-color .15s, color .15s, border-color .15s;
+  }
+  .tab:hover { border-color: var(--blue); color: var(--blue); }
+  .tab[aria-selected="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .tab .count {
+    min-width: 22px; padding: 0 7px; border-radius: 999px;
+    background: rgba(201, 168, 76, .22); color: #6b5210;
+    font-size: .78rem; font-weight: 700; line-height: 20px; text-align: center;
+  }
+  .tab[aria-selected="true"] .count { background: var(--gold-light); color: var(--text); }
 
+  .tabpanel { padding: 24px 4px 4px; }
+  .tabpanel:focus-visible { outline-offset: 4px; }
+  .panel-blurb { margin: 0 0 16px; color: var(--muted); }
 
-  
-</div>
-        </nav>
-        
-        
+  .sheet-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .sheet-list a {
+    position: relative; display: block;
+    padding: 12px 14px 12px 34px; border-radius: 10px;
+    color: var(--text); text-decoration: none;
+    transition: background-color .15s;
+  }
+  .sheet-list a::before {
+    content: ""; position: absolute; left: 14px; top: 21px;
+    width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+  }
+  .sheet-list a:hover { background: #F5F1E8; }
+  .sheet-list strong { display: block; font-weight: 700; color: var(--text); }
+  .sheet-list a:hover strong { color: var(--blue); }
+  .sheet-list strong::after { content: " ↗"; color: var(--muted); font-weight: 400; }
+  .sheet-list span { display: block; color: var(--muted); font-size: .95rem; }
 
-        <div class="canvas">
-          <div id="home" class="item page">
-  <div class="column-one">
-    <h1>Javid Shiriyev, Ph.D.</h1>
+  .notice {
+    margin: 0; padding: 18px 20px; border-radius: 12px;
+    border: 2px dashed var(--gold); background: #FFF8E6; color: #6b5210;
+  }
+  .notice code { background: rgba(201, 168, 76, .18); padding: 1px 6px; border-radius: 5px; color: #5a4409; }
 
-<p>I share reservoir engineering insights, Python-based tools, project examples, and teaching materials that help connect technical concepts with real field applications.</p>
+  .kb-foot { margin: 20px 4px 0; font-size: .95rem; }
+  .kb-foot a { font-weight: 600; text-decoration: none; }
+  .kb-foot a:hover { text-decoration: underline; }
 
-<h2>Technical Focus</h2>
+  /* ── Shared card grid ───────────────────────────────────────── */
+  .grid { display: grid; gap: 20px; }
+  .grid-res { grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); }
+  .grid-tools { grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); }
 
-<ul>
-<li>Reservoir simulation and field development planning</li>
-<li>Formation evaluation and petrophysics</li>
-<li>Reservoir fluids, rock mechanics, and production analysis</li>
-<li>Scientific computing and Python-based engineering workflows</li>
-</ul>
+  .tone-eng  { --tone-bg: #E8F1FA; --tone-fg: #145289; }
+  .tone-sci  { --tone-bg: #E6F4EE; --tone-fg: #17694A; }
+  .tone-ml   { --tone-bg: #F0EAFB; --tone-fg: #5B3A99; }
+  .tone-pet  { --tone-bg: #FBF1D9; --tone-fg: #7A5A12; }
 
-<h2>Professional Background</h2>
+  /* ── Resources & Downloads ──────────────────────────────────── */
+  .res-card {
+    display: flex; flex-direction: column; padding: 22px;
+    transition: transform .18s, box-shadow .18s;
+  }
+  .res-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .res-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .res-icon {
+    width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+    display: grid; place-items: center; font-size: 26px;
+    background: var(--tone-bg);
+  }
+  .badge {
+    display: inline-block; padding: 4px 10px; border-radius: 999px;
+    background: var(--tone-bg); color: var(--tone-fg);
+    font-size: .76rem; font-weight: 700; letter-spacing: .02em; text-align: right;
+  }
+  .res-card h3 { margin: 0 0 8px; font-size: 1.15rem; line-height: 1.3; }
+  .res-card p { margin: 0 0 20px; color: var(--muted); font-size: .95rem; }
 
-<p>My research revolves around studying fluid flow modeling through porous media, including the problems associated with uncertainty handling in data collection and model incorporation. I acquire the rudiments of mechanics and the basics of data science and have taught fluid and rock mechanics, reservoir characterization and petrophysics-related courses. Besides teaching, currently, I am also involved in the field development planning for Gum-Daniz and Bahar fields.</p>
+  .btn-dl {
+    margin-top: auto; align-self: stretch;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 11px 16px; border-radius: 10px;
+    background: var(--blue); color: #fff;
+    font-weight: 700; font-size: .95rem; text-decoration: none;
+    transition: background-color .15s;
+  }
+  .btn-dl:hover { background: var(--blue-dark); color: #fff; }
+  .btn-dl.is-disabled { background: #E5E7EB; color: #4B5563; cursor: not-allowed; }
+  .btn-dl.is-disabled:hover { background: #E5E7EB; color: #4B5563; }
 
-<h2>Education</h2>
+  /* ── Python Tools ───────────────────────────────────────────── */
+  .tool-card { display: flex; flex-direction: column; gap: 16px; padding: 22px; }
+  .tool-head { display: flex; align-items: center; gap: 14px; }
+  .tool-icon {
+    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+    display: grid; place-items: center; font-size: 24px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  }
+  .tool-head h3 { margin: 0; font-size: 1.1rem; line-height: 1.3; }
+  .tool-sub { margin: 2px 0 0; color: var(--muted); font-size: .88rem; font-family: var(--font-mono); }
+  .tool-desc { margin: 0; color: var(--muted); font-size: .95rem; }
 
-<ul>
-<li>Ph.D., Petroleum and Geosystems Engineering, The University of Texas at Austin, 2018</li>
-<li>M.Sc., Petroleum and Natural Gas Engineering, Middle East Technical University, 2014</li>
-<li>B.Sc., Petroleum and Natural Gas Engineering, Middle East Technical University, 2012</li>
-</ul>
+  .dropzone {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    min-height: 148px; padding: 20px 16px; border-radius: 12px;
+    border: 2px dashed #CFC8BB; background: var(--bg);
+    text-align: center; cursor: pointer;
+    transition: border-color .15s, background-color .15s;
+  }
+  .dropzone:hover, .dropzone.is-over { border-color: var(--blue); background: #EEF5FB; }
+  .dropzone.has-file { border-style: solid; border-color: var(--gold); background: #FFFBF0; }
+  .dz-icon { font-size: 28px; line-height: 1; margin-bottom: 4px; }
+  .dz-main { font-weight: 600; }
+  .dz-main u { color: var(--blue); text-underline-offset: 3px; }
+  .dz-hint { color: var(--muted); font-size: .85rem; }
+  .dz-file { margin-top: 6px; max-width: 100%; font-weight: 700; color: var(--text); word-break: break-all; }
 
-<h2>Experience</h2>
+  .btn-run {
+    width: 100%; padding: 12px 16px; border-radius: 10px; border: 0;
+    background: var(--gold); color: var(--text);
+    font: inherit; font-weight: 700; cursor: pointer;
+    transition: background-color .15s;
+  }
+  .btn-run:hover { background: var(--gold-light); }
+  .btn-run:disabled { opacity: .65; cursor: progress; }
 
-<ul>
-<li>Reservoir Simulation Engineer, Bahar Energy Operated Company, Jun. 2021 to present</li>
-<li>Senior Lecturer, Baku Higher Oil School, Nov. 2020 to present</li>
-<li>Visiting Assistant Professor, Middle East Technical University NCC, 2020</li>
-<li>Postdoctoral Research Fellow, The University of Texas at Austin, 2019-2020</li>
-<li>Reservoir Engineering Intern, Aramco Services Company, 2017</li>
-<li>Petroleum Engineering Intern, BP, 2013</li>
-<li>Drilling Engineering Intern, BP, 2011</li>
-<li>Student Intern, TPAO, 2010</li>
-</ul>
+  .tool-status { min-height: 1.5em; margin-top: -4px; font-size: .92rem; font-weight: 600; }
+  .tool-status.is-warn  { color: #92400E; }
+  .tool-status.is-error { color: #B42318; }
+  .tool-status.is-ok    { color: #17694A; }
+  .tool-status.is-busy  { color: var(--blue); }
 
-<h2>Research Interests</h2>
+  /* ── Footer ─────────────────────────────────────────────────── */
+  .footer { background: var(--text); color: rgba(255, 255, 255, .68); padding: 40px 0; text-align: center; font-size: .95rem; }
+  .footer p { margin: 0; }
+  .footer p + p { margin-top: 8px; }
+  .footer .f-brand { color: rgba(255, 255, 255, .9); font-weight: 600; }
+  .footer .f-brand .glyph, .footer .f-brand strong { color: var(--gold); }
+  .footer a { color: var(--gold-light); text-decoration: none; }
+  .footer a:hover { color: #fff; text-decoration: underline; }
 
-<ul>
-<li>Perforation and wellbore stability in unconsolidated sands</li>
-<li>Sand control completions</li>
-<li>Frac-packing poorly consolidated sands </li>
-<li>Hydraulic fracture propagation in soft formations</li>
-<li>Fluid flow in fractured rock</li>
-</ul>
+  /* ── Responsive ─────────────────────────────────────────────── */
+  @media (max-width: 720px) {
+    .section { padding: 56px 0; }
+    .hero { padding: 72px 0 64px; }
+    .kb { padding: 16px; }
+  }
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+    .brand { gap: 8px; }
+    .brand-mark { width: 32px; height: 32px; font-size: 19px; border-radius: 9px; }
+    .brand-name { font-size: 1.1rem; }
+    .nav-links { gap: 0; }
+    .nav-links a { padding: 7px 9px; font-size: .88rem; }
+    .hero-actions .btn { flex: 1 1 100%; }
+    .tabs { gap: 6px; }
+    .tab { padding: 7px 12px; font-size: .88rem; }
+    .res-card, .tool-card { padding: 18px; }
+  }
+</style>
+</head>
+<body>
 
-<h2>Courses Taught</h2>
-
-<ul>
-<li>Fluid Flow Through Porous Media</li>
-<li>Applied Geostatistics for Reservoir Characterization</li>
-<li>Formation Evaluation with Well Logging</li>
-<li>Fundamentals of Petrophysics</li>
-<li>Reservoir Fluid Properties</li>
-<li>Reservoir Rock Mechanics</li>
-<li>Scientific Computing with Python</li>
-<li>Energy Resources</li>
-</ul>
-
-<h2>Honors</h2>
-
-<ul>
-<li>SPWLA Annual Symposium Paper Contest Winner, 2017</li>
-<li>Conoco-Phillips Scholarship recipient, 2014-15</li>
-<li>METU Graduate Course Performance Award, 2013</li>
-<li>BP Graduate Scholarship recipient, 2012-14</li>
-<li>Chamber of Petroleum Engineers Award, Turkey, 2012</li>
-<li>METU Undergraduate First Ranking Student Award, 2012</li>
-<li>BP Undergraduate Scholarship recipient, 2008-12</li>
-</ul>
-
-<h2>Publications</h2>
-
-<p>See my <a href="https://scholar.google.com/citations?user=YvggY5wAAAAJ&hl=en">Google Scholar profile</a> for the current publication list.</p>
-
+<nav class="nav" aria-label="Primary">
+  <div class="container">
+    <a class="brand" href="#top" aria-label="Thoth — back to top">
+      <span class="brand-mark glyph" aria-hidden="true">𓅓</span>
+      <span class="brand-name">Tho<span>th</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#knowledge">Knowledge</a></li>
+      <li><a href="#downloads">Downloads</a></li>
+      <li><a href="#tools">Tools</a></li>
+    </ul>
   </div>
-</div>
+</nav>
 
-        </div>
-
-      </main>
-
-      <page-footer></page-footer>
-      
+<header class="hero" id="top">
+  <span class="hero-glyph glyph" aria-hidden="true">𓂀</span>
+  <div class="container">
+    <h1>Scripts, Structures<br><span class="accent">&amp; Solutions</span></h1>
+    <p>A hub for technical knowledge, engineering resources, and Python-powered calculation tools.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#tools">Try the Tools</a>
+      <a class="btn btn-ghost" href="#knowledge">Browse Knowledge</a>
     </div>
+  </div>
+</header>
 
-    <script src="./scripts/main.js"></script>
-    <script src="./scripts/ribbon.js"></script>
-    <script src="./scripts/sidebar.js"></script>
-    <script src="./scripts/hybrid.js"></script>
-    <script src="./scripts/canvas.js"></script>
+<main>
 
-  </body>
+  <!-- ── Section 1 — Knowledge Base ─────────────────────────────
+       Tabs are built by the script below from data-science-guide's published
+       catalog (data/catalog.js), so new weekly sheets appear here on their own. -->
+  <section class="section" id="knowledge" aria-labelledby="knowledge-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="knowledge-title">Knowledge Base</h2>
+        <p>Concise references across data science, programming, and engineering — sourced from <a href="https://github.com/jshiriyev/data-science-guide">jshiriyev/data-science-guide</a>. Updated weekly.</p>
+      </div>
+      <div class="kb card-surface">
+        <div class="tabs" role="tablist" aria-label="Knowledge subjects" id="kb-tabs"></div>
+        <div id="kb-panels">
+          <noscript>
+            <p class="notice">This section needs JavaScript. Browse the sheets directly at <a href="https://jshiriyev.github.io/data-science-guide/">jshiriyev.github.io/data-science-guide</a>.</p>
+          </noscript>
+        </div>
+        <p class="kb-foot"><a href="https://jshiriyev.github.io/data-science-guide/">Browse every sheet on data-science-guide →</a></p>
+      </div>
+    </div>
+  </section>
 
+  <hr class="divider">
+
+  <!-- ── Section 2 — Resources & Downloads ──────────────────────
+       To publish a "Coming Soon" card: share its Drive item as "Anyone with the link",
+       set href to the link (folder URL, or https://drive.google.com/uc?export=download&id=FILE_ID
+       for a ZIP), remove the is-disabled class and aria-disabled/tabindex, and change the label. -->
+  <section class="section" id="downloads" aria-labelledby="downloads-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="downloads-title">Resources &amp; Downloads</h2>
+        <p>Lecture notes, reference sheets, and worked material, shared from Google Drive.</p>
+      </div>
+      <div class="grid grid-res">
+
+        <article class="res-card card-surface">
+          <div class="res-top">
+            <div class="res-icon tone-eng" aria-hidden="true">⚖️</div>
+            <span class="badge tone-eng">Engineering</span>
+          </div>
+          <h3>Engineering Ethics</h3>
+          <p>Professional responsibility, codes of conduct, case studies, and ethical decision frameworks for engineers.</p>
+          <!-- Drive: Shared Drives/Engineering_Ethics (private) -->
+          <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">⬇ Coming Soon</a>
+        </article>
+
+        <article class="res-card card-surface">
+          <div class="res-top">
+            <div class="res-icon tone-sci" aria-hidden="true">📊</div>
+            <span class="badge tone-sci">Science</span>
+          </div>
+          <h3>Probability &amp; Statistics</h3>
+          <p>Distributions, inference, hypothesis testing, Bayesian methods, and regression reference sheets.</p>
+          <!-- Drive: Lectures/DS01_Probability_and_Statistics (private) -->
+          <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">⬇ Coming Soon</a>
+        </article>
+
+        <article class="res-card card-surface">
+          <div class="res-top">
+            <div class="res-icon tone-ml" aria-hidden="true">🤖</div>
+            <span class="badge tone-ml">Machine Learning</span>
+          </div>
+          <h3>Machine Learning Algorithms</h3>
+          <p>Algorithm summaries, model selection guides, evaluation metrics, and scikit-learn workflow references.</p>
+          <!-- Drive: Lectures/DS03_Machine_Learning_Algorithms (private) -->
+          <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">⬇ Coming Soon</a>
+        </article>
+
+        <article class="res-card card-surface">
+          <div class="res-top">
+            <div class="res-icon tone-sci" aria-hidden="true">🧮</div>
+            <span class="badge tone-sci">Science</span>
+          </div>
+          <h3>Scientific Computing</h3>
+          <p>Numerical methods, SciPy workflows, ODE solvers, interpolation, optimization, and linear algebra references.</p>
+          <!-- Drive: Lectures/SE01_Scientific_Computing (private) -->
+          <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">⬇ Coming Soon</a>
+        </article>
+
+        <article class="res-card card-surface">
+          <div class="res-top">
+            <div class="res-icon tone-eng" aria-hidden="true">🌊</div>
+            <span class="badge tone-eng">Engineering</span>
+          </div>
+          <h3>Fluid Mechanics</h3>
+          <p>Continuity, Bernoulli, Navier-Stokes basics, pipe flow, dimensionless numbers, and boundary layer references.</p>
+          <!-- Drive: Lectures/PG03_Advanced_Fluid_Mechanics (private) -->
+          <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">⬇ Coming Soon</a>
+        </article>
+
+        <article class="res-card card-surface">
+          <div class="res-top">
+            <div class="res-icon tone-pet" aria-hidden="true">🔬</div>
+            <span class="badge tone-pet">Petroleum Engineering</span>
+          </div>
+          <h3>Formation Evaluation</h3>
+          <p>Well log interpretation, petrophysical equations, porosity and permeability estimation, saturation models.</p>
+          <!-- Drive: Lectures/RE02_Formation_Evaluation (shared: anyone with the link) -->
+          <a class="btn-dl" href="https://drive.google.com/drive/folders/1L6ktgzcgU6HB0UzKwDOKYeyKz6K-0_cU" target="_blank" rel="noopener">Open in Drive ↗</a>
+        </article>
+
+        <article class="res-card card-surface">
+          <div class="res-top">
+            <div class="res-icon tone-pet" aria-hidden="true">🛢️</div>
+            <span class="badge tone-pet">Petroleum Engineering</span>
+          </div>
+          <h3>Reservoir Simulation</h3>
+          <p>Finite difference methods, grid design, fluid flow equations, history matching, and simulation workflow guides.</p>
+          <!-- Drive: Lectures/RE04_Reservoir_Simulation (shared: anyone with the link) -->
+          <a class="btn-dl" href="https://drive.google.com/drive/folders/1_zIODaMIsAbgS-oXFmz--JEjFouppfVx" target="_blank" rel="noopener">Open in Drive ↗</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ── Section 3 — Python Tools ───────────────────────────────
+       Each card POSTs its file to API_BASE + /toolN/run (see the script below). -->
+  <section class="section" id="tools" aria-labelledby="tools-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="tools-title">Python Tools</h2>
+        <p>Upload a spreadsheet, run a Python calculation, and download the result as CSV.</p>
+      </div>
+      <div class="grid grid-tools">
+
+        <article class="tool-card card-surface" data-tool="1">
+          <header class="tool-head">
+            <div class="tool-icon" aria-hidden="true">⚙️</div>
+            <div>
+              <h3>Tool 1 — Placeholder</h3>
+              <p class="tool-sub">Your Python package name here</p>
+            </div>
+          </header>
+          <p class="tool-desc">Describe what this tool calculates, the input columns it expects, and what the output CSV contains.</p>
+          <div class="dropzone" role="button" tabindex="0" aria-label="Choose a data file for Tool 1">
+            <span class="dz-icon" aria-hidden="true">📄</span>
+            <span class="dz-main">Drag &amp; drop a file, or <u>browse</u></span>
+            <span class="dz-hint">.csv, .xlsx, .xls · max 10MB</span>
+            <span class="dz-file" hidden></span>
+          </div>
+          <input type="file" accept=".csv,.xlsx,.xls" hidden>
+          <button class="btn-run" type="button">▶ Run Calculation</button>
+          <div class="tool-status" role="status" aria-live="polite"></div>
+        </article>
+
+        <article class="tool-card card-surface" data-tool="2">
+          <header class="tool-head">
+            <div class="tool-icon" aria-hidden="true">📐</div>
+            <div>
+              <h3>Tool 2 — Placeholder</h3>
+              <p class="tool-sub">Your Python package name here</p>
+            </div>
+          </header>
+          <p class="tool-desc">Describe what this tool calculates, the input columns it expects, and what the output CSV contains.</p>
+          <div class="dropzone" role="button" tabindex="0" aria-label="Choose a data file for Tool 2">
+            <span class="dz-icon" aria-hidden="true">📄</span>
+            <span class="dz-main">Drag &amp; drop a file, or <u>browse</u></span>
+            <span class="dz-hint">.csv, .xlsx, .xls · max 10MB</span>
+            <span class="dz-file" hidden></span>
+          </div>
+          <input type="file" accept=".csv,.xlsx,.xls" hidden>
+          <button class="btn-run" type="button">▶ Run Calculation</button>
+          <div class="tool-status" role="status" aria-live="polite"></div>
+        </article>
+
+        <article class="tool-card card-surface" data-tool="3">
+          <header class="tool-head">
+            <div class="tool-icon" aria-hidden="true">🧪</div>
+            <div>
+              <h3>Tool 3 — Placeholder</h3>
+              <p class="tool-sub">Your Python package name here</p>
+            </div>
+          </header>
+          <p class="tool-desc">Describe what this tool calculates, the input columns it expects, and what the output CSV contains.</p>
+          <div class="dropzone" role="button" tabindex="0" aria-label="Choose a data file for Tool 3">
+            <span class="dz-icon" aria-hidden="true">📄</span>
+            <span class="dz-main">Drag &amp; drop a file, or <u>browse</u></span>
+            <span class="dz-hint">.csv, .xlsx, .xls · max 10MB</span>
+            <span class="dz-file" hidden></span>
+          </div>
+          <input type="file" accept=".csv,.xlsx,.xls" hidden>
+          <button class="btn-run" type="button">▶ Run Calculation</button>
+          <div class="tool-status" role="status" aria-live="polite"></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="f-brand"><span class="glyph" aria-hidden="true">𓅓</span> <strong>Thoth</strong> — Scripts, Structures &amp; Solutions</p>
+    <p>Knowledge sourced from <a href="https://github.com/jshiriyev/data-science-guide">jshiriyev/data-science-guide</a> · Built for engineers, developers &amp; students.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ── Configuration ──────────────────────────────────────────────
+  // Published data-science-guide site; its data/catalog.js lists every sheet.
+  var DSG_BASE = 'https://jshiriyev.github.io/data-science-guide/';
+  // FastAPI backend for the Python tools. Swap for the deployed URL later.
+  var API_BASE = 'http://localhost:8000';
+  var MAX_BYTES = 10 * 1024 * 1024;
+  var ALLOWED_EXT = ['.csv', '.xlsx', '.xls'];
+
+  // Tab order and labels. Folder ids must match data-science-guide's subject folders.
+  var SUBJECTS = [
+    { id: 'data-science-overview',       label: 'Data Science Overview' },
+    { id: 'probability-and-statistics',  label: 'Probability & Statistics' },
+    { id: 'python-programming',          label: 'Python Programming' },
+    { id: 'data-analytics-tools',        label: 'Data Analytics Tools' },
+    { id: 'machine-learning-algorithms', label: 'Machine Learning' },
+    { id: 'big-data-principles',         label: 'Big Data' },
+    { id: 'deep-learning-methods',       label: 'Deep Learning' }
+  ];
+
+  // Shown immediately and kept if the live catalog cannot be loaded.
+  var SNAPSHOT = {
+    subjects: [
+      { id: 'data-science-overview', blurb: 'The shape of the field: workflow, roles, and how the pieces fit together.', sheets: [] },
+      { id: 'probability-and-statistics', blurb: 'Distributions, estimation, hypothesis testing, and inference.', sheets: [] },
+      { id: 'python-programming', blurb: 'The language itself, plus the idioms that show up in analysis code.', sheets: [] },
+      { id: 'data-analytics-tools', blurb: 'SQL, visualization libraries, notebooks, and the rest of the toolbox.', sheets: [
+        { title: 'SQL in 40 Topics', blurb: 'Forty SQL topics with live labs, a pattern library, common bugs and a readiness check.', href: 'data-analytics-tools/SQL_Cheat_Sheet.html' },
+        { title: 'SQL Quick Reference', blurb: 'Query evaluation order, joins, aggregation, window functions, CTEs, DML/DDL, and the dialect differences that bite.', href: 'data-analytics-tools/sql-quick-reference.html' }
+      ] },
+      { id: 'machine-learning-algorithms', blurb: 'Supervised and unsupervised methods, training, and evaluation.', sheets: [] },
+      { id: 'big-data-principles', blurb: 'Distributed storage and compute, and what changes at scale.', sheets: [] },
+      { id: 'deep-learning-methods', blurb: 'Neural architectures, training dynamics, and where each one applies.', sheets: [] }
+    ]
+  };
+
+  function el(tag, attrs, children) {
+    var node = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'text') node.textContent = attrs[k];
+      else if (k === 'className') node.className = attrs[k];
+      else node.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function (c) { if (c) node.appendChild(c); });
+    return node;
+  }
+
+  // ── Navigation: active link on scroll ──────────────────────────
+  var nav = document.querySelector('.nav');
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = navLinks.map(function (a) { return document.querySelector(a.hash); });
+
+  function updateActiveLink() {
+    var line = nav.offsetHeight + window.innerHeight * 0.25;
+    var current = null;
+    sections.forEach(function (s) { if (s.getBoundingClientRect().top <= line) current = s.id; });
+    var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) current = sections[sections.length - 1].id;
+    navLinks.forEach(function (a) {
+      var on = a.hash === '#' + current;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; updateActiveLink(); });
+  }, { passive: true });
+  window.addEventListener('resize', updateActiveLink);
+  updateActiveLink();
+
+  // ── Knowledge Base tabs ────────────────────────────────────────
+  var tabsEl = document.getElementById('kb-tabs');
+  var panelsEl = document.getElementById('kb-panels');
+  var activeId = null;
+
+  function sheetUrl(href) {
+    try {
+      var url = new URL(href, DSG_BASE);
+      return (url.protocol === 'https:' || url.protocol === 'http:') ? url.href : null;
+    } catch (e) { return null; }
+  }
+
+  function normalise(catalog) {
+    var byId = {};
+    (catalog.subjects || []).forEach(function (s) { byId[s.id] = s; });
+    var list = SUBJECTS.map(function (s) {
+      var c = byId[s.id] || {};
+      return { id: s.id, label: s.label, blurb: c.blurb || '', sheets: c.sheets || [] };
+    });
+    // A subject added to data-science-guide later still gets a tab, after the known ones.
+    (catalog.subjects || []).forEach(function (s) {
+      if (!SUBJECTS.some(function (k) { return k.id === s.id; })) {
+        list.push({ id: s.id, label: s.title || s.id, blurb: s.blurb || '', sheets: s.sheets || [] });
+      }
+    });
+    return list;
+  }
+
+  function buildPanel(subject) {
+    var panel = el('div', {
+      className: 'tabpanel', role: 'tabpanel', id: 'kb-panel-' + subject.id,
+      'aria-labelledby': 'kb-tab-' + subject.id, tabindex: '0'
+    });
+    if (subject.blurb) panel.appendChild(el('p', { className: 'panel-blurb', text: subject.blurb }));
+
+    var sheets = subject.sheets.filter(function (s) { return s && s.title && sheetUrl(s.href); });
+    if (!sheets.length) {
+      var notice = el('p', { className: 'notice' });
+      notice.appendChild(document.createTextNode('Content coming soon. Add cheat sheets to '));
+      notice.appendChild(el('code', { text: subject.id + '/' }));
+      notice.appendChild(document.createTextNode(' to populate this section.'));
+      panel.appendChild(notice);
+      return panel;
+    }
+
+    var ul = el('ul', { className: 'sheet-list' });
+    sheets.forEach(function (s) {
+      var link = el('a', { href: sheetUrl(s.href) }, [el('strong', { text: s.title })]);
+      if (s.blurb) link.appendChild(el('span', { text: s.blurb }));
+      ul.appendChild(el('li', null, [link]));
+    });
+    panel.appendChild(ul);
+    return panel;
+  }
+
+  function selectTab(id, focus) {
+    activeId = id;
+    Array.prototype.forEach.call(tabsEl.children, function (tab) {
+      var on = tab.dataset.id === id;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focus) tab.focus();
+    });
+    Array.prototype.forEach.call(panelsEl.querySelectorAll('.tabpanel'), function (p) {
+      p.hidden = p.id !== 'kb-panel-' + id;
+    });
+  }
+
+  function renderKnowledge(catalog) {
+    var subjects = normalise(catalog);
+    if (!subjects.some(function (s) { return s.id === activeId; })) {
+      var firstWithSheets = subjects.filter(function (s) { return s.sheets.length; })[0];
+      activeId = (firstWithSheets || subjects[0]).id;
+    }
+
+    tabsEl.textContent = '';
+    panelsEl.querySelectorAll('.tabpanel').forEach(function (p) { p.remove(); });
+
+    subjects.forEach(function (s) {
+      var tab = el('button', {
+        className: 'tab', type: 'button', role: 'tab',
+        id: 'kb-tab-' + s.id, 'aria-controls': 'kb-panel-' + s.id
+      }, [document.createTextNode(s.label)]);
+      tab.dataset.id = s.id;
+      if (s.sheets.length) tab.appendChild(el('span', { className: 'count', text: String(s.sheets.length), 'aria-label': s.sheets.length + (s.sheets.length === 1 ? ' sheet' : ' sheets') }));
+      tabsEl.appendChild(tab);
+      panelsEl.appendChild(buildPanel(s));
+    });
+    selectTab(activeId, false);
+  }
+
+  tabsEl.addEventListener('click', function (e) {
+    var tab = e.target.closest('.tab');
+    if (tab) selectTab(tab.dataset.id, false);
+  });
+
+  tabsEl.addEventListener('keydown', function (e) {
+    var tabs = Array.prototype.slice.call(tabsEl.children);
+    var i = tabs.findIndex(function (t) { return t.dataset.id === activeId; });
+    var next = null;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = tabs.length - 1;
+    if (next === null) return;
+    e.preventDefault();
+    selectTab(tabs[next].dataset.id, true);
+  });
+
+  renderKnowledge(SNAPSHOT);
+
+  // Then swap in the live catalog, which data-science-guide regenerates on every deploy.
+  var catalogScript = document.createElement('script');
+  catalogScript.src = DSG_BASE + 'data/catalog.js';
+  catalogScript.async = true;
+  catalogScript.onload = function () {
+    var live = window.DSG_CATALOG;
+    if (live && Array.isArray(live.subjects)) renderKnowledge(live);
+  };
+  document.head.appendChild(catalogScript);
+
+  // ── Downloads: inert placeholder buttons ───────────────────────
+  document.querySelectorAll('.btn-dl.is-disabled').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+
+  // ── Python tools ───────────────────────────────────────────────
+  // Stop a file dropped just outside a drop zone from navigating away from the page.
+  ['dragover', 'drop'].forEach(function (type) {
+    window.addEventListener(type, function (e) { e.preventDefault(); });
+  });
+
+  function extOf(name) {
+    var dot = name.lastIndexOf('.');
+    return dot === -1 ? '' : name.slice(dot).toLowerCase();
+  }
+
+  function formatSize(bytes) {
+    return bytes < 1024 * 1024 ? Math.max(1, Math.round(bytes / 1024)) + ' KB' : (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  document.querySelectorAll('.tool-card').forEach(function (card) {
+    var n = card.dataset.tool;
+    var zone = card.querySelector('.dropzone');
+    var input = card.querySelector('input[type="file"]');
+    var fileLabel = card.querySelector('.dz-file');
+    var button = card.querySelector('.btn-run');
+    var status = card.querySelector('.tool-status');
+    var selected = null;
+
+    input.setAttribute('aria-label', 'Data file for Tool ' + n);
+
+    function setStatus(text, kind) {
+      status.textContent = text;
+      status.className = 'tool-status' + (kind ? ' is-' + kind : '');
+    }
+
+    function pick(file) {
+      if (!file) return;
+      if (ALLOWED_EXT.indexOf(extOf(file.name)) === -1) {
+        setStatus('⚠️ Unsupported file type. Use .csv, .xlsx or .xls.', 'warn');
+        return;
+      }
+      if (file.size > MAX_BYTES) {
+        setStatus('⚠️ File is ' + formatSize(file.size) + '. The limit is 10MB.', 'warn');
+        return;
+      }
+      selected = file;
+      zone.classList.add('has-file');
+      fileLabel.hidden = false;
+      fileLabel.textContent = file.name + ' (' + formatSize(file.size) + ')';
+      setStatus('', null);
+    }
+
+    zone.addEventListener('click', function () { input.click(); });
+    zone.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
+    });
+    input.addEventListener('change', function () {
+      pick(input.files[0]);
+      input.value = '';
+    });
+
+    zone.addEventListener('dragenter', function (e) { e.preventDefault(); zone.classList.add('is-over'); });
+    zone.addEventListener('dragover', function (e) { e.preventDefault(); zone.classList.add('is-over'); });
+    zone.addEventListener('dragleave', function (e) {
+      if (!zone.contains(e.relatedTarget)) zone.classList.remove('is-over');
+    });
+    zone.addEventListener('drop', function (e) {
+      e.preventDefault();
+      zone.classList.remove('is-over');
+      if (e.dataTransfer && e.dataTransfer.files.length) pick(e.dataTransfer.files[0]);
+    });
+
+    button.addEventListener('click', function () {
+      if (!selected) {
+        setStatus('⚠️ Please choose a file first.', 'warn');
+        return;
+      }
+
+      var form = new FormData();
+      form.append('file', selected, selected.name);
+
+      button.disabled = true;
+      setStatus('⏳ Running calculation…', 'busy');
+
+      fetch(API_BASE + '/tool' + n + '/run', { method: 'POST', body: form })
+        .then(function (res) {
+          if (!res.ok) {
+            var err = new Error('HTTP ' + res.status);
+            err.httpStatus = res.status;
+            throw err;
+          }
+          return res.blob();
+        })
+        .then(function (blob) {
+          var name = 'tool' + n + '_output.csv';
+          var url = URL.createObjectURL(blob);
+          var a = el('a', { href: url, download: name });
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+          setStatus('✅ Done. ' + name + ' downloaded.', 'ok');
+        })
+        .catch(function (err) {
+          if (err.httpStatus) setStatus('❌ The backend returned an error (HTTP ' + err.httpStatus + ').', 'error');
+          else setStatus('❌ Could not reach backend. Is FastAPI running?', 'error');
+        })
+        .then(function () { button.disabled = false; });
+    });
+  });
+})();
+</script>
+</body>
 </html>
