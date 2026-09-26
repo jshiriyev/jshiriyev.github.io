@@ -91,25 +91,26 @@
   /* ── Hero ───────────────────────────────────────────────────── */
   .hero {
     position: relative; overflow: hidden;
-    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 55%, #0e3d6b 100%);
-    color: #fff;
-    padding: 104px 0 96px;
+    background: linear-gradient(135deg, #336DAA 0%, #1D4070 100%);
+    color: #fff; text-align: center;
+    padding: 88px 0 68px;
   }
   .hero-glyph {
-    position: absolute; top: -.12em; right: -.08em;
-    font-size: clamp(12rem, 32vw, 26rem);
+    position: absolute; top: -.095em; right: 4.3vw;
+    font-size: clamp(9rem, 13.2vw, 15rem);
     color: #fff; opacity: .08;
     pointer-events: none; user-select: none;
   }
   .hero .container { position: relative; }
   .hero h1 {
-    margin: 0 0 20px;
-    font-size: clamp(2.4rem, 6.2vw, 4.25rem);
-    line-height: 1.06; font-weight: 800; letter-spacing: -.025em;
+    margin: 0 0 24px;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.2; font-weight: 800; letter-spacing: -.025em;
   }
-  .hero h1 .accent { color: var(--gold-light); }
-  .hero p { margin: 0 0 36px; max-width: 580px; font-size: clamp(1.05rem, 2vw, 1.2rem); color: rgba(255, 255, 255, .86); }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero h1 .accent { display: block; margin-top: .4em; color: var(--gold-light); }
+  .hero p { margin: 0 auto 32px; max-width: 580px; font-size: clamp(1.05rem, 2vw, 1.2rem); color: rgba(255, 255, 255, .86); }
+  .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .hero-actions .btn { padding: 12px 24px; font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 1.05rem; }
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -120,7 +121,7 @@
   }
   .btn-gold { background: var(--gold); color: var(--text); border-color: var(--gold); }
   .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); color: var(--text); transform: translateY(-1px); }
-  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .85); }
+  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .5); }
   .btn-ghost:hover { background: rgba(255, 255, 255, .12); color: #fff; border-color: #fff; }
 
   /* ── Sections ───────────────────────────────────────────────── */
@@ -322,7 +323,7 @@
 <header class="hero" id="top">
   <span class="hero-glyph glyph" aria-hidden="true">𓂀</span>
   <div class="container">
-    <h1>Scripts, Structures<br><span class="accent">&amp; Solutions</span></h1>
+    <h1>Scripts, Structures <span class="accent">&amp; Solutions</span></h1>
     <p>A hub for technical knowledge, engineering resources, and Python-powered calculation tools.</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="#tools">Try the Tools</a>
