@@ -245,35 +245,9 @@
   .tool-sub { margin: 2px 0 0; color: var(--muted); font-size: .88rem; font-family: var(--font-mono); }
   .tool-desc { margin: 0; color: var(--muted); font-size: .95rem; }
 
-  .dropzone {
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-    min-height: 148px; padding: 20px 16px; border-radius: 12px;
-    border: 2px dashed #CFC8BB; background: var(--bg);
-    text-align: center; cursor: pointer;
-    transition: border-color .15s, background-color .15s;
-  }
-  .dropzone:hover, .dropzone.is-over { border-color: var(--blue); background: #EEF5FB; }
-  .dropzone.has-file { border-style: solid; border-color: var(--gold); background: #FFFBF0; }
-  .dz-icon { font-size: 28px; line-height: 1; margin-bottom: 4px; }
-  .dz-main { font-weight: 600; }
-  .dz-main u { color: var(--blue); text-underline-offset: 3px; }
-  .dz-hint { color: var(--muted); font-size: .85rem; }
-  .dz-file { margin-top: 6px; max-width: 100%; font-weight: 700; color: var(--text); word-break: break-all; }
-
-  .btn-run {
-    width: 100%; padding: 12px 16px; border-radius: 10px; border: 0;
-    background: var(--gold); color: var(--text);
-    font: inherit; font-weight: 700; cursor: pointer;
-    transition: background-color .15s;
-  }
-  .btn-run:hover { background: var(--gold-light); }
-  .btn-run:disabled { opacity: .65; cursor: progress; }
-
-  .tool-status { min-height: 1.5em; margin-top: -4px; font-size: .92rem; font-weight: 600; }
-  .tool-status.is-warn  { color: #92400E; }
-  .tool-status.is-error { color: #B42318; }
-  .tool-status.is-ok    { color: #17694A; }
-  .tool-status.is-busy  { color: var(--blue); }
+  .tool-card .btn-dl { margin-top: auto; }
+  .tool-src { align-self: center; margin-top: -6px; font-size: .9rem; font-weight: 600; text-decoration: none; }
+  .tool-src:hover { text-decoration: underline; }
 
   /* ── Footer ─────────────────────────────────────────────────── */
   .footer { background: var(--text); color: rgba(255, 255, 255, .68); padding: 40px 0; text-align: center; font-size: .95rem; }
@@ -442,36 +416,32 @@
   <hr class="divider">
 
   <!-- ── Section 3 — Python Tools ───────────────────────────────
-       Each card POSTs its file to API_BASE + /toolN/run (see the script below). -->
+       Each card links to a repo's own GitHub Pages site, where its browser apps
+       take the input files. To publish a "Coming Soon" card: set the button href
+       to the site, remove the is-disabled class and aria-disabled/tabindex,
+       change the label, and add a tool-src link to the repo. -->
   <section class="section" id="tools" aria-labelledby="tools-title">
     <div class="container">
       <div class="section-head">
         <h2 id="tools-title">Python Tools</h2>
-        <p>Upload a spreadsheet, run a Python calculation, and download the result as CSV.</p>
+        <p>Browser apps built on my Python packages. Each one opens on its own site and walks you through its input.</p>
       </div>
       <div class="grid grid-tools">
 
-        <article class="tool-card card-surface" data-tool="1">
+        <article class="tool-card card-surface">
           <header class="tool-head">
-            <div class="tool-icon" aria-hidden="true">⚙️</div>
+            <div class="tool-icon" aria-hidden="true">🔬</div>
             <div>
-              <h3>Tool 1 — Placeholder</h3>
-              <p class="tool-sub">Your Python package name here</p>
+              <h3>Formation Evaluation</h3>
+              <p class="tool-sub">pphys</p>
             </div>
           </header>
-          <p class="tool-desc">Describe what this tool calculates, the input columns it expects, and what the output CSV contains.</p>
-          <div class="dropzone" role="button" tabindex="0" aria-label="Choose a data file for Tool 1">
-            <span class="dz-icon" aria-hidden="true">📄</span>
-            <span class="dz-main">Drag &amp; drop a file, or <u>browse</u></span>
-            <span class="dz-hint">.csv, .xlsx, .xls · max 10MB</span>
-            <span class="dz-file" hidden></span>
-          </div>
-          <input type="file" accept=".csv,.xlsx,.xls" hidden>
-          <button class="btn-run" type="button">▶ Run Calculation</button>
-          <div class="tool-status" role="status" aria-live="polite"></div>
+          <p class="tool-desc">Petrophysics apps for well logs: one-page well log displays from LAS files, digitizing scanned logs, and log interpretation.</p>
+          <a class="btn-dl" href="https://jshiriyev.github.io/formation-evaluation/">Open the apps →</a>
+          <a class="tool-src" href="https://github.com/jshiriyev/formation-evaluation" target="_blank" rel="noopener">Source on GitHub ↗</a>
         </article>
 
-        <article class="tool-card card-surface" data-tool="2">
+        <article class="tool-card card-surface">
           <header class="tool-head">
             <div class="tool-icon" aria-hidden="true">📐</div>
             <div>
@@ -479,19 +449,11 @@
               <p class="tool-sub">Your Python package name here</p>
             </div>
           </header>
-          <p class="tool-desc">Describe what this tool calculates, the input columns it expects, and what the output CSV contains.</p>
-          <div class="dropzone" role="button" tabindex="0" aria-label="Choose a data file for Tool 2">
-            <span class="dz-icon" aria-hidden="true">📄</span>
-            <span class="dz-main">Drag &amp; drop a file, or <u>browse</u></span>
-            <span class="dz-hint">.csv, .xlsx, .xls · max 10MB</span>
-            <span class="dz-file" hidden></span>
-          </div>
-          <input type="file" accept=".csv,.xlsx,.xls" hidden>
-          <button class="btn-run" type="button">▶ Run Calculation</button>
-          <div class="tool-status" role="status" aria-live="polite"></div>
+          <p class="tool-desc">Describe what this tool's apps do and the input they take.</p>
+          <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">Coming Soon</a>
         </article>
 
-        <article class="tool-card card-surface" data-tool="3">
+        <article class="tool-card card-surface">
           <header class="tool-head">
             <div class="tool-icon" aria-hidden="true">🧪</div>
             <div>
@@ -499,16 +461,8 @@
               <p class="tool-sub">Your Python package name here</p>
             </div>
           </header>
-          <p class="tool-desc">Describe what this tool calculates, the input columns it expects, and what the output CSV contains.</p>
-          <div class="dropzone" role="button" tabindex="0" aria-label="Choose a data file for Tool 3">
-            <span class="dz-icon" aria-hidden="true">📄</span>
-            <span class="dz-main">Drag &amp; drop a file, or <u>browse</u></span>
-            <span class="dz-hint">.csv, .xlsx, .xls · max 10MB</span>
-            <span class="dz-file" hidden></span>
-          </div>
-          <input type="file" accept=".csv,.xlsx,.xls" hidden>
-          <button class="btn-run" type="button">▶ Run Calculation</button>
-          <div class="tool-status" role="status" aria-live="polite"></div>
+          <p class="tool-desc">Describe what this tool's apps do and the input they take.</p>
+          <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">Coming Soon</a>
         </article>
 
       </div>
@@ -531,10 +485,6 @@
   // ── Configuration ──────────────────────────────────────────────
   // Published data-science-guide site; its data/catalog.js lists every sheet.
   var DSG_BASE = 'https://jshiriyev.github.io/data-science-guide/';
-  // FastAPI backend for the Python tools. Swap for the deployed URL later.
-  var API_BASE = 'http://localhost:8000';
-  var MAX_BYTES = 10 * 1024 * 1024;
-  var ALLOWED_EXT = ['.csv', '.xlsx', '.xls'];
 
   // Tab order and labels. Folder ids must match data-science-guide's subject folders.
   var SUBJECTS = [
@@ -720,116 +670,9 @@
   };
   document.head.appendChild(catalogScript);
 
-  // ── Downloads: inert placeholder buttons ───────────────────────
+  // ── Downloads and tools: inert "Coming Soon" buttons ───────────
   document.querySelectorAll('.btn-dl.is-disabled').forEach(function (a) {
     a.addEventListener('click', function (e) { e.preventDefault(); });
-  });
-
-  // ── Python tools ───────────────────────────────────────────────
-  // Stop a file dropped just outside a drop zone from navigating away from the page.
-  ['dragover', 'drop'].forEach(function (type) {
-    window.addEventListener(type, function (e) { e.preventDefault(); });
-  });
-
-  function extOf(name) {
-    var dot = name.lastIndexOf('.');
-    return dot === -1 ? '' : name.slice(dot).toLowerCase();
-  }
-
-  function formatSize(bytes) {
-    return bytes < 1024 * 1024 ? Math.max(1, Math.round(bytes / 1024)) + ' KB' : (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-  }
-
-  document.querySelectorAll('.tool-card').forEach(function (card) {
-    var n = card.dataset.tool;
-    var zone = card.querySelector('.dropzone');
-    var input = card.querySelector('input[type="file"]');
-    var fileLabel = card.querySelector('.dz-file');
-    var button = card.querySelector('.btn-run');
-    var status = card.querySelector('.tool-status');
-    var selected = null;
-
-    input.setAttribute('aria-label', 'Data file for Tool ' + n);
-
-    function setStatus(text, kind) {
-      status.textContent = text;
-      status.className = 'tool-status' + (kind ? ' is-' + kind : '');
-    }
-
-    function pick(file) {
-      if (!file) return;
-      if (ALLOWED_EXT.indexOf(extOf(file.name)) === -1) {
-        setStatus('⚠️ Unsupported file type. Use .csv, .xlsx or .xls.', 'warn');
-        return;
-      }
-      if (file.size > MAX_BYTES) {
-        setStatus('⚠️ File is ' + formatSize(file.size) + '. The limit is 10MB.', 'warn');
-        return;
-      }
-      selected = file;
-      zone.classList.add('has-file');
-      fileLabel.hidden = false;
-      fileLabel.textContent = file.name + ' (' + formatSize(file.size) + ')';
-      setStatus('', null);
-    }
-
-    zone.addEventListener('click', function () { input.click(); });
-    zone.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
-    });
-    input.addEventListener('change', function () {
-      pick(input.files[0]);
-      input.value = '';
-    });
-
-    zone.addEventListener('dragenter', function (e) { e.preventDefault(); zone.classList.add('is-over'); });
-    zone.addEventListener('dragover', function (e) { e.preventDefault(); zone.classList.add('is-over'); });
-    zone.addEventListener('dragleave', function (e) {
-      if (!zone.contains(e.relatedTarget)) zone.classList.remove('is-over');
-    });
-    zone.addEventListener('drop', function (e) {
-      e.preventDefault();
-      zone.classList.remove('is-over');
-      if (e.dataTransfer && e.dataTransfer.files.length) pick(e.dataTransfer.files[0]);
-    });
-
-    button.addEventListener('click', function () {
-      if (!selected) {
-        setStatus('⚠️ Please choose a file first.', 'warn');
-        return;
-      }
-
-      var form = new FormData();
-      form.append('file', selected, selected.name);
-
-      button.disabled = true;
-      setStatus('⏳ Running calculation…', 'busy');
-
-      fetch(API_BASE + '/tool' + n + '/run', { method: 'POST', body: form })
-        .then(function (res) {
-          if (!res.ok) {
-            var err = new Error('HTTP ' + res.status);
-            err.httpStatus = res.status;
-            throw err;
-          }
-          return res.blob();
-        })
-        .then(function (blob) {
-          var name = 'tool' + n + '_output.csv';
-          var url = URL.createObjectURL(blob);
-          var a = el('a', { href: url, download: name });
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-          setStatus('✅ Done. ' + name + ' downloaded.', 'ok');
-        })
-        .catch(function (err) {
-          if (err.httpStatus) setStatus('❌ The backend returned an error (HTTP ' + err.httpStatus + ').', 'error');
-          else setStatus('❌ Could not reach backend. Is FastAPI running?', 'error');
-        })
-        .then(function () { button.disabled = false; });
-    });
   });
 })();
 </script>
