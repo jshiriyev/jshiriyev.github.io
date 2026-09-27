@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#1B6CA8">
-<title>Thoth — Scripts, Structures &amp; Solutions</title>
+<title>Thoth &middot; Scripts, Structures &amp; Solutions</title>
 <meta name="description" content="A hub for technical knowledge, engineering resources, and Python-powered calculation tools.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231B6CA8'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23e8c96a'%3ET%3C/text%3E%3C/svg%3E">
 <style>
@@ -308,7 +308,7 @@
 
 <nav class="nav" aria-label="Primary">
   <div class="container">
-    <a class="brand" href="#top" aria-label="Thoth — back to top">
+    <a class="brand" href="#top" aria-label="Thoth - back to top">
       <span class="brand-mark glyph" aria-hidden="true">𓅓</span>
       <span class="brand-name">Tho<span>th</span></span>
     </a>
@@ -399,17 +399,6 @@
           <h3>Machine Learning Algorithms</h3>
           <p>Algorithm summaries, model selection guides, evaluation metrics, and scikit-learn workflow references.</p>
           <!-- Drive: Lectures/DS03_Machine_Learning_Algorithms (private) -->
-          <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">⬇ Coming Soon</a>
-        </article>
-
-        <article class="res-card card-surface">
-          <div class="res-top">
-            <div class="res-icon tone-sci" aria-hidden="true">🧮</div>
-            <span class="badge tone-sci">Science</span>
-          </div>
-          <h3>Scientific Computing</h3>
-          <p>Numerical methods, SciPy workflows, ODE solvers, interpolation, optimization, and linear algebra references.</p>
-          <!-- Drive: Lectures/SE01_Scientific_Computing (private) -->
           <a class="btn-dl is-disabled" href="#" aria-disabled="true" tabindex="-1">⬇ Coming Soon</a>
         </article>
 
@@ -550,25 +539,24 @@
   // Tab order and labels. Folder ids must match data-science-guide's subject folders.
   var SUBJECTS = [
     { id: 'data-science-overview',       label: 'Data Science Overview' },
-    { id: 'probability-and-statistics',  label: 'Probability & Statistics' },
     { id: 'python-programming',          label: 'Python Programming' },
     { id: 'data-analytics-tools',        label: 'Data Analytics Tools' },
-    { id: 'machine-learning-algorithms', label: 'Machine Learning' },
     { id: 'big-data-principles',         label: 'Big Data' },
     { id: 'deep-learning-methods',       label: 'Deep Learning' }
   ];
+
+  // Subjects in data-science-guide's catalog that should not get a tab here.
+  var HIDDEN = ['probability-and-statistics', 'machine-learning-algorithms'];
 
   // Shown immediately and kept if the live catalog cannot be loaded.
   var SNAPSHOT = {
     subjects: [
       { id: 'data-science-overview', blurb: 'The shape of the field: workflow, roles, and how the pieces fit together.', sheets: [] },
-      { id: 'probability-and-statistics', blurb: 'Distributions, estimation, hypothesis testing, and inference.', sheets: [] },
       { id: 'python-programming', blurb: 'The language itself, plus the idioms that show up in analysis code.', sheets: [] },
       { id: 'data-analytics-tools', blurb: 'SQL, visualization libraries, notebooks, and the rest of the toolbox.', sheets: [
         { title: 'SQL in 40 Topics', blurb: 'Forty SQL topics with live labs, a pattern library, common bugs and a readiness check.', href: 'data-analytics-tools/SQL_Cheat_Sheet.html' },
         { title: 'SQL Quick Reference', blurb: 'Query evaluation order, joins, aggregation, window functions, CTEs, DML/DDL, and the dialect differences that bite.', href: 'data-analytics-tools/sql-quick-reference.html' }
       ] },
-      { id: 'machine-learning-algorithms', blurb: 'Supervised and unsupervised methods, training, and evaluation.', sheets: [] },
       { id: 'big-data-principles', blurb: 'Distributed storage and compute, and what changes at scale.', sheets: [] },
       { id: 'deep-learning-methods', blurb: 'Neural architectures, training dynamics, and where each one applies.', sheets: [] }
     ]
@@ -633,7 +621,7 @@
     });
     // A subject added to data-science-guide later still gets a tab, after the known ones.
     (catalog.subjects || []).forEach(function (s) {
-      if (!SUBJECTS.some(function (k) { return k.id === s.id; })) {
+      if (HIDDEN.indexOf(s.id) === -1 && !SUBJECTS.some(function (k) { return k.id === s.id; })) {
         list.push({ id: s.id, label: s.title || s.id, blurb: s.blurb || '', sheets: s.sheets || [] });
       }
     });
