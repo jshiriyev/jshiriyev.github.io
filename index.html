@@ -683,8 +683,7 @@
   function renderKnowledge(catalog) {
     var subjects = normalise(catalog);
     if (!subjects.some(function (s) { return s.id === activeId; })) {
-      var firstWithSheets = subjects.filter(function (s) { return s.sheets.length; })[0];
-      activeId = (firstWithSheets || subjects[0]).id;
+      activeId = subjects[0].id;
     }
 
     tabsEl.textContent = '';
